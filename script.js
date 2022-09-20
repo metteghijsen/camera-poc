@@ -1,3 +1,7 @@
+let canvas = document.querySelector("#canvas");
+let context = canvas.getContext("2d")
+let video = document.querySelector("#video")
+
 //kijken of de browser van de gebruiker de mediaDevices API support
 if ('mediaDevices' in navigator && 'getUserMedia' in navigator.mediaDevices) {
     console.log("Let's get this party started")
@@ -14,9 +18,15 @@ navigator.mediaDevices.getUserMedia({video: true}, {
             min: 720, //minimale resolutie
             max: 1080 //maximale resolutie
         },
-        frameRate: 1
     }
 }).then(stream => {
-    document.getElementById("vid").srcObject = stream;
+    video.srcObject = stream;
 })
 
+document.querySelector("#snap").addEventListener("click", ()=>{
+    context.drawImage(video, 0,0, 640, 480)
+})
+
+navigator.mediaDevices.enumerateDevices().then(devices =>{
+    console.log(devices)
+})
