@@ -1,5 +1,4 @@
 let canvas = document.querySelector("#canvas");
-let context = canvas.getContext("2d")
 let video = document.querySelector("#video")
 
 //kijken of de browser van de gebruiker de mediaDevices API support
@@ -24,7 +23,15 @@ navigator.mediaDevices.getUserMedia({video: true}, {
 })
 
 document.querySelector("#snap").addEventListener("click", ()=>{
-    context.drawImage(video, 0,0, 640, 480)
+    const canvasElement = document.createElement("canvas");
+    const canvasElementContext = canvasElement.getContext("2d");
+
+    canvasElement.setAttribute("width","480");
+    canvasElement.setAttribute("height","480");
+
+    canvasElementContext.drawImage(video, 0,0, 640, 480);
+
+    document.body.appendChild(canvasElement);
 })
 
 navigator.mediaDevices.enumerateDevices().then(devices =>{
