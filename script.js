@@ -1,5 +1,6 @@
 let canvas = document.querySelector("#canvas");
 let video = document.querySelector("#video")
+let captureButton = document.querySelector("#snap");
 
 //kijken of de browser van de gebruiker de mediaDevices API support
 if ('mediaDevices' in navigator && 'getUserMedia' in navigator.mediaDevices) {
@@ -22,7 +23,7 @@ navigator.mediaDevices.getUserMedia({video: true}, {
     video.srcObject = stream;
 })
 
-document.querySelector("#snap").addEventListener("click", ()=>{
+captureButton.addEventListener("click", ()=>{
     const canvasElement = document.createElement("canvas");
     const canvasElementContext = canvasElement.getContext("2d");
 
