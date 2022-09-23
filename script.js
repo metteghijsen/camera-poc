@@ -24,7 +24,8 @@ captureButton.addEventListener("click", ()=>{
     canvasElement.height = video.videoHeight;
     canvasElement.width = video.videoWidth;
 
-    canvasElementContext.drawImage(video, 0,0, video.videoWidth, video.videoHeight);
+    canvasElementContext.scale(-1,1);
+    canvasElementContext.drawImage(video, 0,0, video.videoWidth*-1, video.videoHeight);
 
     cameraElement.appendChild(canvasElement);
     video.style.display = "none";
@@ -47,6 +48,7 @@ captureButton.addEventListener("click", ()=>{
         if (confirm(text) === true) {
             const image = canvasElement.toDataURL('image/png');
             const link = document.createElement("a");
+
             link.href = image;
             link.download = 'image.png';
             link.click();
