@@ -12,12 +12,8 @@ if ('mediaDevices' in navigator && 'getUserMedia' in navigator.mediaDevices) {
 }
 
 //Vragen om toestemming voor het gebruiken van de camera
-navigator.mediaDevices.getUserMedia({video: true}, {
-    video: {
-        width: 640,
-        height: 480,
-    }
-}).then(stream => {
+navigator.mediaDevices.getUserMedia({video: true}
+).then(stream => {
     video.srcObject = stream;
 })
 
@@ -25,10 +21,10 @@ captureButton.addEventListener("click", ()=>{
     const canvasElement = document.createElement("canvas");
     const canvasElementContext = canvasElement.getContext("2d");
 
-    canvasElement.setAttribute("width","640");
-    canvasElement.setAttribute("height","480");
+    canvasElement.height = video.height;
+    canvasElement.width = video.width;
 
-    canvasElementContext.drawImage(video, 0,0, 640, 480);
+    canvasElementContext.drawImage(video, 0,0, video.width, video.height);
 
     cameraElement.appendChild(canvasElement);
     video.style.display = "none";
