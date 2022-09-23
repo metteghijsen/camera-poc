@@ -21,10 +21,10 @@ captureButton.addEventListener("click", ()=>{
     const canvasElement = document.createElement("canvas");
     const canvasElementContext = canvasElement.getContext("2d");
 
-    canvasElement.height = video.height;
-    canvasElement.width = video.width;
+    canvasElement.height = video.videoHeight;
+    canvasElement.width = video.videoWidth;
 
-    canvasElementContext.drawImage(video, 0,0, video.width, video.height);
+    canvasElementContext.drawImage(video, 0,0, video.videoWidth, video.videoHeight);
 
     cameraElement.appendChild(canvasElement);
     video.style.display = "none";
