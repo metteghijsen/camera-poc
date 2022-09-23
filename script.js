@@ -40,6 +40,7 @@ captureButton.addEventListener("click", ()=>{
             actionButtons.style.display = "none";
 
             cameraElement.removeChild(canvasElement);
+            cameraElement.removeChild(canvasElement); //code moet 2x omdat het anders niet werkt :'(
         }
     })
 
@@ -58,6 +59,8 @@ captureButton.addEventListener("click", ()=>{
             actionButtons.style.display = "none";
 
             cameraElement.removeChild(canvasElement);
+            canvasElementContext.clearRect(0,0, video.videoWidth*-1, video.videoHeight);
+
         }
     })
 })
