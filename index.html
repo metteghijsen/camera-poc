@@ -11,17 +11,21 @@
     <title>Camera-POC</title>
 </head>
 <body>
-
-<video id="video" width="640" height="480" autoplay></video>
-<button id="snap"><i class="bi bi-camera-fill"></i></button>
-
-
-<div class="buttons" id="buttonGroup" style="display: none">
-    <div id="remove-button" class="button trash">
-        <i class="bi bi-trash-fill"></i>
+<div class="container">
+    <div class="camera-element" id="camera-element">
+        <video id="video" autoplay></video>
+        <button id="snap"><i class="bi bi-camera-fill"></i></button>
     </div>
-    <div id="save-button" class="button save">
-        <i class="bi bi-save-fill"></i>
+
+    <div class="buttons-container" id="action-buttons" style="display: none">
+        <div class="buttons" id="buttonGroup">
+            <div id="remove-button" class="button trash">
+                <i class="bi bi-trash-fill"></i>
+            </div>
+            <div id="save-button" class="button save">
+                <i class="bi bi-save-fill"></i>
+            </div>
+        </div>
     </div>
 </div>
 
