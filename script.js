@@ -15,22 +15,22 @@ if ('mediaDevices' in navigator && 'getUserMedia' in navigator.mediaDevices) {
 navigator.mediaDevices.getUserMedia({video: true}
 ).then(stream => {
     video.srcObject = stream;
-})
 
-captureButton.addEventListener("click", ()=>{
     const canvasElement = document.createElement("canvas");
     const canvasElementContext = canvasElement.getContext("2d");
 
-    canvasElement.height = video.videoHeight;
-    canvasElement.width = video.videoWidth;
+    captureButton.addEventListener("click", ()=>{
+        canvasElement.height = video.videoHeight;
+        canvasElement.width = video.videoWidth;
 
-    canvasElementContext.scale(-1,1);
-    canvasElementContext.drawImage(video, 0,0, video.videoWidth*-1, video.videoHeight);
+        canvasElementContext.scale(-1,1);
+        canvasElementContext.drawImage(video, 0,0, video.videoWidth*-1, video.videoHeight);
 
-    cameraElement.appendChild(canvasElement);
-    video.style.display = "none";
-    captureButton.style.display = "none";
-    actionButtons.style.display = "flex";
+        cameraElement.appendChild(canvasElement);
+        video.style.display = "none";
+        captureButton.style.display = "none";
+        actionButtons.style.display = "flex";
+    })
 
     deleteButton.addEventListener("click",()=>{
         let text = "Are you sure you want to delete your image?";
@@ -40,7 +40,6 @@ captureButton.addEventListener("click", ()=>{
             actionButtons.style.display = "none";
 
             cameraElement.removeChild(canvasElement);
-            cameraElement.removeChild(canvasElement); //code moet 2x omdat het anders niet werkt :'(
         }
     })
 
@@ -50,8 +49,9 @@ captureButton.addEventListener("click", ()=>{
             const image = canvasElement.toDataURL('image/png');
             const link = document.createElement("a");
 
+            const timestamp = new Date().getTime()
             link.href = image;
-            link.download = 'image.png';
+            link.download = 'image_'+timestamp+'.png';
             link.click();
 
             video.style.display = "flex";
@@ -60,7 +60,6 @@ captureButton.addEventListener("click", ()=>{
 
             cameraElement.removeChild(canvasElement);
             canvasElementContext.clearRect(0,0, video.videoWidth*-1, video.videoHeight);
-
         }
     })
 })
